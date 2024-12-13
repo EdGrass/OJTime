@@ -1,5 +1,6 @@
 #!/Users/edgrass/Documents/Vscode-cpp/OJ-Time-Cmd/OJTimeCmd/bin/python
 
+import re  
 import requests
 import datetime
 from bs4 import BeautifulSoup
@@ -11,15 +12,14 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-import re  # 引入正则表达式模块
 from colorama import Fore, Style, init
 
-# 初始化 colorama
 init()
-ORANGE = "\033[38;5;214m"
 
 def get_codeforces_contests():
-    print(f"{Fore.BLUE}CODEFORCES:{Style.RESET_ALL}")
+    lake_blue = "\033[38;2;0;191;255m"
+    reset_color = Style.RESET_ALL
+    print(f"{lake_blue}CODEFORCES:{reset_color}")
     url = 'https://codeforces.com/api/contest.list'
     response = requests.get(url)
     if response.status_code != 200:
@@ -30,19 +30,21 @@ def get_codeforces_contests():
     if not upcoming_contests:
         print("No upcoming Codeforces contests.")
         return
-    print(f"{Fore.BLUE}Upcoming Codeforces Contests:{Style.RESET_ALL}")
+    print(f"{lake_blue}Upcoming Codeforces Contests:{reset_color}")
     print(f"")
-    upcoming_contests.reverse()  # 确保按时间顺序排列
+    upcoming_contests.reverse() 
     for contest in upcoming_contests:
         start_time = datetime.fromtimestamp(contest['startTimeSeconds'])
         duration = str(timedelta(seconds=contest['durationSeconds']))
-        print(f"{Fore.BLUE}Contest: {contest['name']}{Style.RESET_ALL}")
-        print(f"{Fore.BLUE}Start Time: {start_time.strftime('%Y-%m-%d %H:%M:%S')}{Style.RESET_ALL}")
-        print(f"{Fore.BLUE}Duration: {duration}{Style.RESET_ALL}")
-        print("-" * 40)
+        print(f"{lake_blue}Contest: {contest['name']}{reset_color}")
+        print(f"{lake_blue}Start Time: {start_time.strftime('%Y-%m-%d %H:%M:%S')}{reset_color}")
+        print(f"{lake_blue}Duration: {duration}{reset_color}")
+        print(f"{lake_blue}-{reset_color}" * 40)
 
 def get_atcoder_contests():
-    print(f"{Fore.GREEN}ATCODER:{Style.RESET_ALL}")
+    matcha_green = "\033[38;2;153;204;51m"
+    reset_color = Style.RESET_ALL
+    print(f"{matcha_green}ATCODER:{reset_color}")
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
@@ -53,7 +55,7 @@ def get_atcoder_contests():
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "table.table-default")))
     contests = driver.find_elements(By.CSS_SELECTOR, "table.table-default tr")
     current_time = datetime.now()
-    print(f"{Fore.GREEN}Upcoming Atcoder Contests:")
+    print(f"{matcha_green}Upcoming Atcoder Contests:{reset_color}")
     print(f"")
     for contest in contests:
         columns = contest.find_elements(By.TAG_NAME, "td")
@@ -63,22 +65,22 @@ def get_atcoder_contests():
             try:
                 contest_time = datetime.strptime(contest_time_str, '%Y-%m-%d %H:%M')
             except ValueError:
-                print(f"Atcoder比赛时间格式不匹配,跳过: {contest_time_str}")
+                print(f"{matcha_green}Atcoder比赛时间格式不匹配,跳过: {contest_time_str}{reset_color}")
                 continue
             contest_name = columns[1].text.strip()
             contest_duration = columns[2].text.strip()
             contest_status = columns[3].text.strip()
             if current_time < contest_time:
-                print(f"{Fore.GREEN}Contest: {contest_name[4:]}{Style.RESET_ALL}")
-                print(f"{Fore.GREEN}Start Time: {contest_time}{Style.RESET_ALL}")
-                print(f"{Fore.GREEN}Duration: {contest_duration}{Style.RESET_ALL}")
+                print(f"{matcha_green}Contest: {contest_name[4:]}{reset_color}")
+                print(f"{matcha_green}Start Time: {contest_time}{reset_color}")
+                print(f"{matcha_green}Duration: {contest_duration}:00{reset_color}")
                 print("-" * 40)
     driver.quit()
 
 def codechef_generate_contests(start_contest_number, current_date, limit=5):
     contests = []
     contest_time = datetime.strptime("2024-12-11 22:30:00", "%Y-%m-%d %H:%M:%S")
-    duration = "2 Hrs"
+    duration = "2:00:00"
     count = 0
     while count < limit:
         if contest_time >= current_date:
@@ -94,6 +96,7 @@ def codechef_generate_contests(start_contest_number, current_date, limit=5):
     return contests
 
 def get_codechef_contests():
+    ORANGE = "\033[38;5;214m"
     print(f"{ORANGE}CODECHEF:")
     now = datetime.now()
     contests = codechef_generate_contests(164, now, limit=5)
@@ -107,7 +110,19 @@ def get_codechef_contests():
             print(f"{ORANGE}Contest: {name}")
             print(f"{ORANGE}Start Time: {start_time}")
             print(f"{ORANGE}Duration: {duration}")
-            print("-" * 40)
+            print(f"{ORANGE}-" * 40)
+
+def convert_duration_to_hms(match_time_text):
+    duration_match = re.search(r"时长:(\d+)小时(?:\d+分钟)?", match_time_text)
+    if duration_match:
+        hours = int(duration_match.group(1))
+        minutes = 0
+        minute_match = re.search(r"(\d+)分钟", match_time_text)
+        if minute_match:
+            minutes = int(minute_match.group(1)) 
+        return f"{hours:02}:{minutes:02}:00"
+    else:
+        return "Unknown"
 
 def get_nowcoder_contests():
     print(f"{Fore.MAGENTA}NOWCODER:{Style.RESET_ALL}")
@@ -141,11 +156,12 @@ def get_nowcoder_contests():
             start_time_str = match.group(1)
             start_time = datetime.strptime(start_time_str, "%Y-%m-%d %H:%M")
             duration_match = re.search(r"时长:(\d+小时(?:\d+分钟)?)", match_time_text)
+            duration_display = convert_duration_to_hms(match_time_text)
             duration = duration_match.group(1) if duration_match else "Unknown"
             if current_time < start_time:
                 print(f"{Fore.MAGENTA}Contest: {contest_name}{Style.RESET_ALL}")
                 print(f"{Fore.MAGENTA}Start Time: {start_time}{Style.RESET_ALL}")
-                print(f"{Fore.MAGENTA}Duration: {duration}{Style.RESET_ALL}")
+                print(f"{Fore.MAGENTA}Duration: {duration_display}{Style.RESET_ALL}")
                 print("-" * 40)
         except Exception as e:
             print(f"处理比赛数据时出错: {e}")
@@ -153,6 +169,7 @@ def get_nowcoder_contests():
     driver.quit()
 
 def get_all_contests():
+    print(f"")
     get_codeforces_contests()
     print(f"")
     get_atcoder_contests()
