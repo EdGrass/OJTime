@@ -1,6 +1,5 @@
 #!/Users/edgrass/Documents/Vscode-cpp/OJ-Time-Cmd/OJTimeCmd/bin/python
 
-
 import requests
 import datetime
 from bs4 import BeautifulSoup
