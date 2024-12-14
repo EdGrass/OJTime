@@ -11,3 +11,7 @@ This script is designed to retrieve competition schedules from four commonly use
 - **Atcoder and Nowcoder**: Employ dynamic browser control technologies with `selenium` and `webdriver_manager`.
 
 - **Codechef**: The webpage source code does not include competition information (the webpage seems quite advanced). However, since Codechef contests are consistently held on Wednesdays with a predictable schedule, a brute-force approach with hard-coded data is used. (This will be improved in the future.)
+
+## Update:
+
+Nov 14 17:18 Standardize output format and adjust colors
