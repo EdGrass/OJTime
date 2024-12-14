@@ -15,10 +15,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 from colorama import Fore, Style, init
 
 init()
+lake_blue = "\033[38;2;0;191;255m"
+matcha_green = "\033[38;2;153;204;51m"
+orange = "\033[38;5;214m"
+reset_color = Style.RESET_ALL
 
 def get_codeforces_contests():
-    lake_blue = "\033[38;2;0;191;255m"
-    reset_color = Style.RESET_ALL
     print(f"{lake_blue}CODEFORCES:{reset_color}")
     url = 'https://codeforces.com/api/contest.list'
     response = requests.get(url)
@@ -42,8 +44,6 @@ def get_codeforces_contests():
         print(f"{lake_blue}-{reset_color}" * 40)
 
 def get_atcoder_contests():
-    matcha_green = "\033[38;2;153;204;51m"
-    reset_color = Style.RESET_ALL
     print(f"{matcha_green}ATCODER:{reset_color}")
     options = Options()
     options.add_argument("--headless")
@@ -96,21 +96,20 @@ def codechef_generate_contests(start_contest_number, current_date, limit=5):
     return contests
 
 def get_codechef_contests():
-    ORANGE = "\033[38;5;214m"
-    print(f"{ORANGE}CODECHEF:")
+    print(f"{orange}CODECHEF:")
     now = datetime.now()
     contests = codechef_generate_contests(164, now, limit=5)
-    print(f"{ORANGE}Upcoming Codechef Contests:")
+    print(f"{orange}Upcoming Codechef Contests:")
     print(f"")
     if contests:
         for contest in contests:
             name = contest["name"]
             start_time = contest["start_time"]
             duration = contest["duration"]
-            print(f"{ORANGE}Contest: {name}")
-            print(f"{ORANGE}Start Time: {start_time}")
-            print(f"{ORANGE}Duration: {duration}")
-            print(f"{ORANGE}-" * 40)
+            print(f"{orange}Contest: {name}")
+            print(f"{orange}Start Time: {start_time}")
+            print(f"{orange}Duration: {duration}")
+            print(f"{orange}-" * 40)
 
 def convert_duration_to_hms(match_time_text):
     duration_match = re.search(r"时长:(\d+)小时(?:\d+分钟)?", match_time_text)
@@ -151,7 +150,7 @@ def get_nowcoder_contests():
             match_time_text = contest.find_element(By.CSS_SELECTOR, "li.match-time-icon").text.strip()
             match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2})', match_time_text)
             if not match:
-                print(f"比赛时间格式不匹配，跳过: {match_time_text}")
+                print(f"{Fore.MAGENTA}Nowcoder比赛时间格式不匹配，跳过: {match_time_text}{Style.RESET_ALL}")
                 continue
             start_time_str = match.group(1)
             start_time = datetime.strptime(start_time_str, "%Y-%m-%d %H:%M")
