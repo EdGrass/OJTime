@@ -14,4 +14,4 @@ This script is designed to retrieve competition schedules from four commonly use
 
 ## Update:
 
-Nov 14 17:18 Standardize output format and adjust colors
+Nov 14 22:10 Standardize output format and adjust colors
