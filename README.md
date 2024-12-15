@@ -1,17 +1,29 @@
 # OJ-Time-Cmd
 
-## Purpose:
+## Features
 
-This script is designed to retrieve competition schedules from four commonly used OJ platforms: Codeforces, Atcoder, Codechef, and Nowcoder.
+This tool is used to fetch competition information from four commonly used OnlineJudge platforms:
 
-## Implementation:
+- **Codeforces**
+- **Atcoder**
+- **Codechef**
+- **Nowcoder**
+
+## Implementation
 
 - **Codeforces**: Uses the `requests` library to send API requests and parses the returned JSON data.
+  
+- **Atcoder and Nowcoder**: Implements dynamic browser control with `selenium` and `webdriver_manager`.
 
-- **Atcoder and Nowcoder**: Employ dynamic browser control technologies with `selenium` and `webdriver_manager`.
+- **Codechef**: Since the webpage source does not include competition information and its competitions are held regularly (every Wednesday), a brute-force approach is used to fetch the competition data (this feature will be improved in the future, really).
 
-- **Codechef**: The webpage source code does not include competition information (the webpage seems quite advanced). However, since Codechef contests are consistently held on Wednesdays with a predictable schedule, a brute-force approach with hard-coded data is used. (This will be improved in the future.)
+## Updates
 
-## Update:
+> Due to the nearing end of my ACM career, my need for additional features is quite low, so updates might be infrequent. 
 
-Nov 14 22:10 Standardize output format and adjust colors
+> Future updates may be adjusted at any time, and the exact timing and features will depend on the situation.
+
+- To-do:
+    - May add a user Rating query feature.
+    - May add a daily competition query feature.
+    - More updates to come...

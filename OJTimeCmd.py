@@ -137,7 +137,7 @@ def get_nowcoder_contests():
             EC.visibility_of_element_located((By.CSS_SELECTOR, "div.platform-item-main"))
         )
     except Exception as e:
-        print(f"页面加载失败: {e}")
+        print(f"{Fore.MAGENTA}页面加载失败: {e}{Style.RESET_ALL}")
         driver.quit()
         return
     contests = driver.find_elements(By.CSS_SELECTOR, "div.platform-item-main")
@@ -163,7 +163,7 @@ def get_nowcoder_contests():
                 print(f"{Fore.MAGENTA}Duration: {duration_display}{Style.RESET_ALL}")
                 print("-" * 40)
         except Exception as e:
-            print(f"处理比赛数据时出错: {e}")
+            print(f"{Fore.MAGENTA}处理比赛数据时出错: {e}{Style.RESET_ALL}")
             continue
     driver.quit()
 
