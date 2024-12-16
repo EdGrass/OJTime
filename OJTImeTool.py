@@ -1,4 +1,4 @@
-#!/Users/edgrass/Documents/Vscode-cpp/OJ-Time-Cmd/OJTimeCmd/bin/python
+#!/Users/edgrass/Documents/Vscode-cpp/OJ-Time-Tool/OJTimeTool/bin/python
 
 import re  
 import requests
