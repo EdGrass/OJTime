@@ -55,36 +55,37 @@ This tool is used to fetch competition information from four commonly used Onlin
     - 可能会增加按天查询比赛的功能。
     - ···
 
+
 ## Configuration (macOS)
 
-1. Enter the following in the terminal:
+1. In the terminal, enter:
 ```bash
-sudo ln -s /path/to/your/project/OJTImeTool.py /usr/local/bin/OJT
+sudo ln -s /path/to/project/file/OJTImeTool.py /usr/local/bin/OJT
 ```
 
-2. Change the path of `OJTImeTool.py` to:
+2. Change the first line path of OJTImeTool.py to:
 ```bash
-/path/to/your/file/OJTimeTool/bin/python
+/path/to/file/OJTimeTool/bin/python
 ```
 
-3. Enter the following in the terminal:
+3. In the terminal, enter:
 ```bash
 OJT
 ```
 
-## 配置(macos)
+## 配置 (macOS)
 
-1. 在终端输入
+1. 在终端输入：
 ```bash
-sudo ln -s /该项目文件位置/OJTImeTool.py /usr/local/bin/OJT
+sudo ln -s /path/to/project/file/OJTImeTool.py /usr/local/bin/OJT
 ```
 
-2. 将OJTImeTool.py的路径改为
+2. 将 OJTImeTool.py 的第一行路径改为：
 ```bash
-/该文件/OJTimeTool/bin/python
+/path/to/file/OJTimeTool/bin/python
 ```
 
-3. 终端输入
+3. 在终端输入：
 ```bash
 OJT
 ```
