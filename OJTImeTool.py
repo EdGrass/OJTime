@@ -1,4 +1,4 @@
-#!/Users/edgrass/Documents/Vscode/OJ-Time-Tool/OJTimeTool/bin/python
+#!/Users/edgrass/Documents/Vscode/OJTime/OJTimeTool/bin/python
 
 import re  
 import requests
