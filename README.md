@@ -23,9 +23,7 @@
 
 ### 环境要求
 
-- Python 3.7+
 - Chrome 浏览器（用于 Selenium）
-- pip 包管理工具
 
 ### 安装步骤
 
