@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/Users/edgrass/Documents/Vscode/OJTime/venv/bin/python
 
 import re  
 import requests

@@ -6,6 +6,8 @@
 
 ![OJ-Time-Tool](https://i.imgur.com/w98dgSs.png)
 
+---
+
 ## ✨ 主要功能
 
 自动获取以下平台的比赛信息：
@@ -14,6 +16,8 @@
 - 🎌 **AtCoder** - 日本最受欢迎的竞赛平台
 - 🍴 **CodeChef** - 印度顶级算法竞赛平台
 - 🐂 **牛客网** - 中国知名的竞赛平台
+
+---
 
 ## 🚀 快速开始
 
@@ -44,6 +48,7 @@
    sudo ln -s $(pwd)/OJTImeTool.py /usr/local/bin/OJT
    chmod +x OJTImeTool.py
    ```
+---
 
 ## 💻 使用方法
 
@@ -58,15 +63,15 @@ OJT
 - 比赛开始时间
 - 比赛时长
 
+---
 
 ## ⚖️ 许可证
 
 本项目采用 MIT 许可证，详细信息请参见 [LICENSE](LICENSE) 文件。
 
-## 📮 联系方式
+---
 
-如有任何问题或建议，欢迎提交 Issue 或通过以下方式与我联系：
+## 💬 反馈与贡献
 
-- GitHub Issues
-- Email: 1213710430@qq.com
+如果你在使用过程中遇到任何问题，或者有好的改进建议，请随时通过 GitHub Issues 提交反馈，或创建 Pull Request 为项目贡献代码！
 
